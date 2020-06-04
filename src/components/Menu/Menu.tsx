@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/interface-name-prefix */
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, FC } from 'react';
 import classNames from 'classnames';
 import { MenuItemProps } from './MenuItem';
 
@@ -7,11 +7,14 @@ type MenuMode = 'horizontal' | 'vertical'
 type SelectCallback = (selectedIndex: string) => void;
 
 export interface MenuProps {
+  /** 默认选中的索引 */
   defaultIndex?: string;
   className?: string;
+  /** 设置横竖模式 */
   mode?: MenuMode;
   style?: React.CSSProperties;
   onSelect?: SelectCallback;
+  /** 竖向模式默认展开子列 */
   defaultOpenSubMenu?: string[];
 }
 
@@ -23,7 +26,15 @@ interface IMenuContext {
 }
 
 export const MenuContext = createContext<IMenuContext>({ index: '0', mode: 'horizontal', defaultOpenSubMenu: [] })
-const Menu: React.FC<MenuProps> = (props) => {
+/**
+ * 页面中常用的菜单栏元素
+ * ### 引用方法
+ * 
+ * ~~~js
+ * import { Menu } from 'gundam'
+ * ~~~
+ */
+const Menu: FC<MenuProps> = (props) => {
   const {
     className,
     mode,

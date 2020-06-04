@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, FC } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './Menu';
 import { MenuItemProps } from './MenuItem';
@@ -11,7 +11,7 @@ export interface SubMenuProps {
     className?: string;
 }
 
-const SubMenu: React.FC<SubMenuProps> = (props) => {
+const SubMenu: FC<SubMenuProps> = (props) => {
     const { index, title, children, className } = props;
     const context = useContext(MenuContext)
     const openedSubMenu = context.defaultOpenSubMenu as Array<string>
@@ -82,4 +82,4 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
 
 SubMenu.displayName = 'SubMenu'
 
-export default SubMenu
+export default SubMenu;
